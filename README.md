@@ -48,7 +48,7 @@ python train.py
 $ python detect.py --model_path result/model_13.pth --image_path imgs/1.jpg
 ```
 
-## result
+<!-- ## result
 
 ##### AP
 IOU | area |  maxDets  |  value    
@@ -68,7 +68,7 @@ IOU | area |  maxDets  |  value
 0.50:0.95 | all | 100 | 0.498  
 0.50:0.95 | small | 100 | 0.312  
 0.50:0.95 | medium | 100 | 0.538  
-0.50:0.95 | medium | 100 | 0.631  
+0.50:0.95 | medium | 100 | 0.631   -->
 
 ##### Example result
 <p align="center"><img src="assets/9.jpg" width="320"\></p>
