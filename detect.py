@@ -11,8 +11,8 @@ import random
 def get_args():
     parser = argparse.ArgumentParser(description='Pytorch Faster-rcnn Detection')
 
-    parser.add_argument('--model_path', type=str, default='./result/model_19.pth', help='model path')
-    parser.add_argument('--image_path', type=str, default='./test.jpg', help='image path')
+    parser.add_argument('--model_path', type=str, default='./result/model_1.pth', help='model path')
+    parser.add_argument('--image_path', type=str, default='coco/test2017/000000000161.jpg', help='image path')
     parser.add_argument('--model', default='fasterrcnn_resnet50_fpn', help='model')
     parser.add_argument('--dataset', default='coco', help='model')
     parser.add_argument('--score', type=float, default=0.8, help='objectness score threshold')
@@ -54,18 +54,24 @@ def main():
 
     for idx in range(boxes.shape[0]):
         if scores[idx] >= args.score:
-            x1, y1, x2, y2 = boxes[idx][0], boxes[idx][1], boxes[idx][2], boxes[idx][3]
+            x1, y1, x2, y2 = boxes[idx][0].item(), boxes[idx][1].item(), boxes[idx][2].item(), boxes[idx][3].item()
+            x1=int(x1)
+            y1=int(y1)
+            x2=int(x2)
+            y2=int(y2)
             name = names.get(str(labels[idx].item()))
             # cv2.rectangle(img,(x1,y1),(x2,y2),colors[labels[idx].item()],thickness=2)
-            cv2.rectangle(src_img,(x1,y1),(x2,y2),random_color(),thickness=2)
+            cv2.rectangle(src_img,(x1,y1), (x2,y2), random_color(), thickness=1)
             cv2.putText(src_img, text=name, org=(x1, y1+10), fontFace=cv2.FONT_HERSHEY_SIMPLEX, 
                 fontScale=0.5, thickness=1, lineType=cv2.LINE_AA, color=(0, 0, 255))
 
-    cv2.imshow('result',src_img)   
-    cv2.waitKey()
-    cv2.destroyAllWindows()
+    # cv2.imshow('result',src_img)
+    cv2.imwrite('assets/test.jpg',src_img)
 
-    # cv2.imwrite('assets/11.jpg',img)
+    # r = cv2.waitKey(0)
+    # print "DEBUG: waitKey returned:", chr(r)
+    # cv2.destroyAllWindows()
+
     
 
 if __name__ == "__main__":
