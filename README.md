@@ -1,6 +1,8 @@
 # Faster-RCNN-with-torchvision
 Build Faster-RCNN through the modules officially provided by pytorch torchvision for detection and learning.
 
+# References
+https://github.com/pytorch/vision/tree/master/references/detection
 
 ## Installation
 ##### Code and environment construction
@@ -27,6 +29,10 @@ The current code only supports training of the coco dataset
 ##### command
 ```
 python -m torch.distributed.launch --nproc_per_node=6 --use_env train.py --world-size 6 --b 4
+```
+or if you don't want pass any params
+```
+python train.py
 ```
 
 ##### Partial parameter description
